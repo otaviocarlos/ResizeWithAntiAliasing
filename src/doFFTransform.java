@@ -1,4 +1,7 @@
-
+/*
+*   Carlos Otávio Guimarães     10277057        c.o.guimaraes@usp.br
+*   Leonardo Tres Martinez      10277314        leo.tmartinez@usp.br
+*/
 import ij.ImagePlus;
 import ij.process.FloatProcessor;
 

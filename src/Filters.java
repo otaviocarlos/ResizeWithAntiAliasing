@@ -1,7 +1,7 @@
-/**
- *
- * @author carlos
- */
+/*
+*   Carlos Otávio Guimarães     10277057        c.o.guimaraes@usp.br
+*   Leonardo Tres Martinez      10277314        leo.tmartinez@usp.br
+*/
 public class Filters {
     public static ImageAccess idealLP(String command) {
         int r, i, j;
