@@ -1,59 +1,104 @@
 Authors:
 
-Carlos Otávio Guimarães     10277057        c.o.guimaraes@usp.br
+Carlos Otávio Guimarães     10277057
+contact: c.o.guimaraes@usp.br
 
-Leonardo Tres Martinez      10277314        leo.tmartinez@usp.br
+Leonardo Tres Martinez      10277314        
+contact: leo.tmartinez@usp.br
 
 Portuguese:
 
 Objetivo
+
 	O objetivo do presente projeto, para a matéria de processamento de imagens médicas, é criar um algoritmo em Java, criando um software com base nas mesmas bibliotecas utilizadas no imagej, que executará uma rotina de tratamento de imagem que reduzirá o serrilhamento induzido na imagem por redimensionamento, deixando as imagens alvo “suavizadas”, retirando o aspecto serrilhado causado pelo fenômeno de “aliasing”. 
 Para fins de visualização de resultados, as imagens sofrerão um pré-processamento (que será implementado no código) para que o serrilhamento nelas seja notável.
 	Nós esperamos que após o filtro ser implementado, as imagens geradas sejam mais suaves e não tenham efeitos de serrilhamento (aliasing) bruscos.
 Materiais e Métodos
 As imagens usadas para testes são as mesmas dadas em aula, todas em extensão .tif. Elas estão localizadas na pasta sample no projeto.
-	Todo o código foi desenvolvido em Java, com o auxílio do Apache NeatBeans IDE 11.0, usando as classes dadas ImageAccess.java e FFT.java dadas em aula. Além disso, importou-se a biblioteca ij.jar para que pudesse se fazer uso das mesmas funções disponíveis no imagej. A interface gráfica do software (figura 1) foi feita com auxílio do Apache NeatBeans IDE 11.0.
- Novas classes foram implementadas no intuito de se fazer um algoritmo mais compacto. As classes criadas foram: 
+	Todo o código foi desenvolvido em Java, com o auxílio do Apache NeatBeans IDE 11.0, usando as classes dadas ImageAccess.java e FFT.java dadas em aula. Além disso, importou-se a biblioteca ij.jar para que pudesse se fazer uso das mesmas funções disponíveis no imagej. A interface gráfica do software (figura 1) foi feita com auxílio do Apache NeatBeans IDE 11.0. 
+	Novas classes foram implementadas no intuito de se fazer um algoritmo mais compacto. As classes criadas foram: 
+	
 	• ImageCalculator.java, feita para realizar cálculos na imagem. Como o software só faz a multiplicação de imagens, apenas um método foi implementado nela, chamado mult;
+	
 	• Filters.java, feita com métodos que retornam o Kernel dos filtros Butterworth e Ideal Low Pass;
+	
 	• doFFTrasnform.java, usada em conjunto com FFT.java, feita para fazer cálculos necessários para calcular as transformadas diretas e inversas de Fourier;
+	
 	• MainInterface.java, a classe que contém todos os elementos da interface gráfica e os eventos que ela dispara;
+	
 	• ImageProcessing.java, a classe principal, que executa os métodos chamados por cada evento da classe MainInterface.java. Nela, as imagens são tratadas com os devidos métodos.
+	
 	A interface gráfica permite redimensionar a imagem usando o processamento anti aliasing ou não. Assim, se tornará possível comparar os dois resultados lado a lado. A opção é selecionada por padrão. A interface também permite a escolha do filtro que será usado para o tratamento com anti aliasing, e o tamanho do filtro também é uma opção configurável. Foi optado por sinalizar, para esses dois últimos itens, os padrões que geraram os melhores resultados nos testes.
+	
 	O código utilizado para se realizar a transformada de Fourier possui uma limitação: apenas imagens com as dimensões sendo valores potências de dois são computadas corretamente. Portanto, foi optado por limitar as opções de redimensionamento para 32x32, 64x64, 128x128, 256x256, 512x512 e 1024x1024. 
+	
 
 Os seguintes passos foram seguidos para o processamento da imagem:
+
 	1. Uma imagem .tif de entrada será selecionada de algum diretório escolhido pelo usuário;
+	
 	2. O usuário escolherá os seguintes parâmetros: tipo de processamento, tamanho do redimensionamento, tipo de filtro (ideal ou buterworth), tamanho do filtro;
+	
 	3. A imagem é reduzida à 200x200 px, para depois ser ampliada para o valor escolhido pelo usuário, utilizando o método resize, que redimensiona o tamanho da imagem de acordo com os parâmetros passados Isso irá induzir um grau elevado de serrilhamento na imagem, apenas para que os resultados se tornem mais visíveis e a comparação seja efetuada sem complicações. Na função Resize, também usamos o método nearest neighbor de interpolação, pois ele amplifica o nível de serrilhamento criado;
+	
 	4. Criar um filtro Butterworth passa-baixa ou Ideal passa-baixa e ampliá-lo para as dimensões da imagem;
+	
 	5. Retirar o módulo e a phase da imagem com a transformada de Fourier;
+	
 	6. Aplicar o filtro no módulo da transformada de Fourier, fazendo uma multiplicação de imagens entre o Kernel e o Módulo, e guardar o resultado;
+	
 	7. Usar a Transformada Inversa de Fourier com a phase e o novo módulo com o Kernel aplicado, obtendo a imagem de saída.
+	
 
 English:
 
+
 goal
+
 	The present project for medical image processing is to create an algorithm in Java by developing software based on the same libraries used in imagej that perform an image processing routine that illustrates image sizing by resizing, leaving as target images "smoothed", removing the appearance created by the phenomenon of "aliasing".
-For purposes of visualizing the results, as the images have a pre-processing that is not necessary for the sharpening to be noticeable.
+	
+	For purposes of visualizing the results, as the images have a pre-processing that is not necessary for the sharpening to be noticeable.
+
 	We expect that after the filter is implemented, as the generated images are smoother and can not be erased by the use of abrupt ones.
+	
+	
 Materials and methods
+
+
 	The images used for testing are like the series given in class, all in .tif extension. They are in the noodle sample in the project.
+	
 	All code was developed in Java with the help of Apache NeatBeans IDE 11.0, using as classes given ImageAccess.java and FFT.java given in class. Also, import a library for the use of functions resources in the imagej. A graphical interface of the software (figure 1) was made with Apache NeatBeans IDE 11.0.
+	
 New classes were implemented in order to make a more compact algorithm. As created classes were:
+
 	• ImageCalculator.java, made to perform calculations in the image. Because the software does a multiplication of images, only one method was implemented in it, calling mult:
+	
 	• Filters.java, made with the Butterworth Filters Kernel and the Ideal Low Pass;
+	
 	• doFFTrasnform.java, used in conjunction with FFT.java, made to make calculations necessary to calculate direct and inverse Fourier transformations;
+	
 	• MainInterface.java, a class that contains all elements of the GUI and the events it triggers;
+	
 	• ImageProcessing.java, a main class, which executes processes called by each event of the MainInterface.java class. In it, how images are treated with due methods.
+	
 	A graphical interface allows you to resize an image using anti aliasing or not. Thus, it will become possible to compare the results of the results on one side. The option is agreed by default. An interface also allows a filter option to be used for anti-aliasing, and filtering size is also a configurable option. It was chosen to signal, for the last two items, the patterns that generated the results of the tests.
-The code used to perform the Fourier transform is a limitation: only images with the balance while values ​​of two are computed correctly. Therefore, it was chosen to limit as resizing options to 32x32, 64x64, 128x128, 256x256, 512x512 and 1024x1024.
+	
+The code used to perform the Fourier transform is a limitation: only images with the balance while values of two are computed correctly. Therefore, it was chosen to limit as resizing options to 32x32, 64x64, 128x128, 256x256, 512x512 and 1024x1024.
+
 
 Topics were followed for image processing:
+
 	1. An input .tif image will be selected by some user by the user;
+	
 	2. The user choose the following parameters: processing type, filter size, filter type (ideal or superior), filter size;
-	3. The image is used for 200x200 px, and then enlarged to the value by the user, using the resize method, size and size of the image according to parameters A. In the Resize function, also used the nearest neighbor method interpolation, as it amplifies the level of created
+	
+	3. The image is used for 200x200 px, and then enlarged to the value by the user, using the resize method, size and size of the image according to parameters A. In the Resize function, also used the nearest neighbor method interpolation, as it amplifies the level of created;
+	
 	4. Create a low-pass or low-pass Butterworth filter and magnify it to the dimensions of the image;
+	
 	5. Removal of the module and one phase of the image with the Fourier transform;
+	
 	6. Apply the Filter to the Fourier Transform Module, doing a multiplication of images between the Kernel and the Module, and save the result;
+	
 	7. Use a Reverse Fourier Transform with a phase and the new module with the kernel applied, obtaining an output image.
+	
