@@ -32,6 +32,7 @@ As imagens usadas para testes são as mesmas dadas em aula, todas em extensão .
 	
 	O código utilizado para se realizar a transformada de Fourier possui uma limitação: apenas imagens com as dimensões sendo valores potências de dois são computadas corretamente. Portanto, foi optado por limitar as opções de redimensionamento para 32x32, 64x64, 128x128, 256x256, 512x512 e 1024x1024. 
 	
+    
 
 Os seguintes passos foram seguidos para o processamento da imagem:
 
