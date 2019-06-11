@@ -54,7 +54,7 @@ Os seguintes passos foram seguidos para o processamento da imagem:
 English:
 
 
-goal
+Goal
 
 	The present project for medical image processing is to create an algorithm in Java by developing software based on the same libraries used in imagej that perform an image processing routine that illustrates image sizing by resizing, leaving as target images "smoothed", removing the appearance created by the phenomenon of "aliasing".
 	
